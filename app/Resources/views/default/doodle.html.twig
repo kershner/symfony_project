@@ -18,5 +18,15 @@
             {{ form_row(form.title) }}
         {{  form_end(form) }}
     </div>
+
+    <div class="doodles">
+        {% for entry in data.entries %}
+            <div class="entry">
+                <div class="title">{{ entry.title }}</div>
+                <div class="author">{{ entry.author }}</div>
+                <div class="created">{{ entry.created|date("m/d/Y") }}</div>
+            </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

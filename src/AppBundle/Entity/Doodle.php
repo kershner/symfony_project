@@ -14,27 +14,27 @@ class Doodle
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    public $id;
 
     /**
      * @ORM\Column(name="created", type="date")
      */
-    protected $created;
+    public $created;
 
     /**
      * @ORM\Column(name="author", type="string", length=100)
      */
-    protected $author;
+    public $author;
 
     /**
      * @ORM\Column(name="title", type="string", length=100)
      */
-    protected $title;
+    public $title;
 
     /**
      * @ORM\Column(name="data", type="string", length=100)
      */
-    protected $data;
+    public $data;
 
     /**
      * Get id
