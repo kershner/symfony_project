@@ -10,9 +10,9 @@ class DoodleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('author')
-            ->add('title')
-            ->add('data')
+            ->add('author', 'text', ['required' => false, 'label' => false, 'data' => '', 'attr' => ['placeholder' => 'Author']])
+            ->add('title', 'text', ['required' => false, 'label' => false, 'data' => '', 'attr' => ['placeholder' => 'Title']])
+            ->add('data', 'text', ['required' => false, 'label' => false, 'attr' => array('class' => 'hidden')])
             ->add('save', 'submit')
         ;
     }

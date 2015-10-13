@@ -22,17 +22,17 @@ class Doodle
     public $created;
 
     /**
-     * @ORM\Column(name="author", type="string", length=100)
+     * @ORM\Column(name="author", type="string", length=100, nullable=true)
      */
-    public $author;
+    public $author = 'Anonymous';
 
     /**
-     * @ORM\Column(name="title", type="string", length=100)
+     * @ORM\Column(name="title", type="string", length=100, nullable=true)
      */
-    public $title;
+    public $title = ' ';
 
     /**
-     * @ORM\Column(name="data", type="string", length=100)
+     * @ORM\Column(name="data", type="text")
      */
     public $data;
 

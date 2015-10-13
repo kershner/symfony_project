@@ -51,7 +51,7 @@ class DefaultController extends Controller
             $em->persist($doodle);
             $em->flush();
 
-            return $this->render('default/doodle.html.twig', array('data' => $data, 'form' => $form->createView()));
+            return $this->redirectToRoute('Home');
         }
 
         return $this->render('default/doodle.html.twig', array('data' => $data, 'form' => $form->createView()));

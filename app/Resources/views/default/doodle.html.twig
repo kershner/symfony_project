@@ -5,9 +5,18 @@
     <div class="title">Bacon<span class="doodle">Doodle!</span></div>
 
     <div class="bacon-img">
-        <img src="http://www.kershner.org/static/images/bacon6.jpg">
         <canvas id="bacon-canvas"></canvas>
         <div class="clear-canvas">Clear</div>
+
+        <div class="controls">
+            <input class="color">
+
+            <select class="stroke-size">
+                <option value="1">Small</option>
+                <option value="5">Medium</option>
+                <option value="10">Large</option>
+            </select>
+        </div>
     </div>
 
     <div class="doodle-form">
@@ -22,6 +31,8 @@
     <div class="doodles">
         {% for entry in data.entries %}
             <div class="entry">
+                <div class="doodle-id">{{ entry.id }}</div>
+                <div class="doodle-pic"><img src="{{ entry.data }}"></div>
                 <div class="title">{{ entry.title }}</div>
                 <div class="author">{{ entry.author }}</div>
                 <div class="created">{{ entry.created|date("m/d/Y") }}</div>

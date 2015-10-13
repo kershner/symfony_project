@@ -1,0 +1,162 @@
+body {
+	background-color: #694489;
+	font-family: 'Roboto', sans-serif;
+	color: white;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+div {
+	position: relative;
+	margin: 0 auto;
+}
+input {
+	display: block;
+	margin: .25em;
+	padding: .25em;
+	width: 90%;
+	border-radius: .25em;
+	border: none;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	font-size: 1.5em;
+}
+button {
+	position: relative;
+	margin: 0 auto;
+	border-radius: .25em;
+	font-size: 1.25em;
+	width: 80%;
+    text-align: center;
+}
+select {
+	padding: .25em;
+	margin: 0 auto;
+	border-radius: .25em;
+	background-color: white;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+}
+.hidden {
+	display: none;
+}
+.selected {
+	opacity: 0.6;
+}
+/* CSS Transitions */
+.animate {
+	transition: all .4s ease-in-out;
+}
+.container {
+	position: relative;
+}
+.title {
+	text-align: center;
+	font-size: 5em;
+}
+.doodle {
+	font-family: 'Lobster', sans-serif;
+}
+.colorwave {
+	position: relative;
+}
+.bacon-img {
+	position: relative;
+	margin: 1em auto;
+	height: 400px;
+	width: 400px;
+}
+.bacon-img img {
+	width: 100%;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.46);
+	border-radius: .25em;
+	border: .5em solid white;
+}
+#bacon-canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	border: .5em solid white;
+	border-radius: .25em;
+}
+.clear-canvas {
+	position: absolute;
+	right: .5em;
+	top: 1em;
+}
+.clear-canvas:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+.clear-canvas:active {
+	margin-top: .4em;
+}
+.doodle-form {
+	position: relative;
+	margin: 2em auto;
+	padding: .75em;
+	max-width: 20em;
+	border-radius: .25em;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	background-color: #F2F2F2;
+}
+.controls {
+	position: absolute;
+	top: 0;
+	left: 1em;
+	display: inline-block;
+    margin: 1em auto;
+	padding: .5em;
+	width: 10em;
+	background-color: #F2F2F2;
+    border-radius: .25em;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+}
+.controls input {
+	left: 0;
+	margin: .25em;
+	width: 60%;
+}
+.controls select {
+	margin: 0 auto;
+}
+.stroke-size {
+	position: relative;
+	left: .5em;
+}
+.doodles {
+	margin: 0 auto;
+	padding: .25em;
+	width: 90%;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	background-color: #F2F2F2;
+	border-radius: .25em;
+}
+.entry {
+	display: inline-block;
+	position: relative;
+	margin: 1em;
+	padding: .5em;
+	vertical-align: top;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	background-color: #B39CC6;
+	border-radius: .25em;
+}
+.doodle-id {
+	position: absolute;
+	z-index: 1;
+	top: -.5em;
+	right: -.25em;
+	padding: .5em .75em;
+	font-size: 1em;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	border-radius: 50%;
+	background-color: #F2F2F2;
+	color: black;
+}
+.doodle-pic img {
+	width: 100%;
+	margin: 0 auto;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	border-radius: .25em;
+}
