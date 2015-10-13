@@ -10,13 +10,16 @@ div {
 }
 input {
 	display: block;
-	margin: .25em;
+	margin: .25em auto;
 	padding: .25em;
 	width: 90%;
 	border-radius: .25em;
 	border: none;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	font-size: 1.5em;
+}
+input:hover {
+	cursor: pointer;
 }
 button {
 	position: relative;
@@ -29,7 +32,7 @@ button {
 select {
 	padding: .25em;
 	margin: 0 auto;
-	border-radius: .25em;
+	border-radius: .5em;
 	background-color: white;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 }
@@ -47,8 +50,31 @@ select {
 	position: relative;
 }
 .title {
+	margin: .25em auto;
+	max-width: 8em;
+	color: #2e2e2e;
 	text-align: center;
 	font-size: 5em;
+	text-shadow: none;
+	background-color: #F2F2F2;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	border-radius: .1em;
+}
+.inner-title {
+    position: absolute;
+    padding: .25em;
+    top: -1.25em;
+    background-color: #f2f2f2;
+    color: #2e2e2e;
+    text-shadow: none;
+    border-radius: .25em;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+}
+.left {
+	left: .2em;
+}
+.right {
+	right: .2em;
 }
 .doodle {
 	font-family: 'Lobster', sans-serif;
@@ -61,10 +87,10 @@ select {
 	margin: 1em auto;
 	height: 400px;
 	width: 400px;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 }
 .bacon-img img {
 	width: 100%;
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.46);
 	border-radius: .25em;
 	border: .5em solid white;
 }
@@ -78,6 +104,7 @@ select {
 	height: 100%;
 	border: .5em solid white;
 	border-radius: .25em;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.46);
 }
 .clear-canvas {
 	position: absolute;
@@ -91,31 +118,82 @@ select {
 .clear-canvas:active {
 	margin-top: .4em;
 }
+.new-doodle {
+	position: relative;
+	margin: 1em auto;
+	width: 7em;
+	background-color: #A6C159;
+	font-family: 'Lobster';
+	font-size: 3em;
+	text-align: center;
+	border: .1em solid white;
+	border-radius: .25em;
+}
+.new-doodle:hover {
+	cursor: pointer;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.46);
+	transform: scale(1.1);
+}
 .doodle-form {
 	position: relative;
 	margin: 2em auto;
+	margin-top: 3em;
 	padding: .75em;
 	max-width: 20em;
 	border-radius: .25em;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	background-color: #F2F2F2;
 }
+.submit-btn {
+	height: 1.5em;
+	line-height: 1.5em;
+	width: 100%;
+	background-color: #A6C159;
+	color: white;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+	border: none;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.46);
+}
+.submit-btn:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+}
 .controls {
 	position: absolute;
 	top: 0;
-	left: 1em;
-	display: inline-block;
+	left: -10.5em;
     margin: 1em auto;
 	padding: .5em;
-	width: 10em;
+	width: 9em;
 	background-color: #F2F2F2;
     border-radius: .25em;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 }
+.control-icon {
+	position: absolute;
+	color: black;
+	text-shadow: none;
+}
+.control-icon img {
+	width: 2em;
+	height: 2em;
+	border: none;
+	box-shadow: none;
+}
+#color-icon {
+	top: 1em;
+    left: 7.5em;
+}
+#stroke-size-icon {
+	bottom: 3.05em;
+    left: 5em;
+    font-size: 1.25em;
+}
 .controls input {
-	left: 0;
 	margin: .25em;
-	width: 60%;
+}
+.color {
+	width: 3.75em;
 }
 .controls select {
 	margin: 0 auto;
@@ -124,13 +202,42 @@ select {
 	position: relative;
 	left: .5em;
 }
+.choose-background {
+	display: block;
+	margin: .75em auto;
+	padding: .25em;
+	background-color: white;
+	text-align: center;
+	color: #2e2e2e;
+	text-shadow: none;
+	border-radius: .25em;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+}
+.choose-background span {
+	display: inline-block;
+	position: relative;
+	margin: 0 .25em;
+	font-size: .75em;
+	bottom: .25em;
+}
+.choose-background i {
+	display: inline-block;
+	font-size: 1.2em;
+}
+.choose-background i:hover {
+	cursor: pointer;
+	transform: scale(1.3);
+}
 .doodles {
 	margin: 0 auto;
 	padding: .25em;
-	width: 90%;
+	width: 80%;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	background-color: #F2F2F2;
 	border-radius: .25em;
+}
+#prev-doodles {
+	font-size: 1.75em;
 }
 .entry {
 	display: inline-block;
@@ -138,6 +245,8 @@ select {
 	margin: 1em;
 	padding: .5em;
 	vertical-align: top;
+	height: 150px;
+	width: 300px;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	background-color: #B39CC6;
 	border-radius: .25em;
@@ -159,4 +268,24 @@ select {
 	margin: 0 auto;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	border-radius: .25em;
+}
+.entry-title {
+	position: absolute;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+	bottom: .25em;
+	text-align: center;
+	font-size: 2.5em;
+}
+.author-date {
+    position: absolute;
+    top: .25em;
+    left: .25em;
+    padding: .5em;
+    background-color: #F2F2F2;
+    border-radius: .25em;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+    color: #2e2e2e;
+    text-shadow: none;
 }

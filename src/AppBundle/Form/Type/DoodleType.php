@@ -13,7 +13,7 @@ class DoodleType extends AbstractType
             ->add('author', 'text', ['required' => false, 'label' => false, 'data' => '', 'attr' => ['placeholder' => 'Author']])
             ->add('title', 'text', ['required' => false, 'label' => false, 'data' => '', 'attr' => ['placeholder' => 'Title']])
             ->add('data', 'text', ['required' => false, 'label' => false, 'attr' => array('class' => 'hidden')])
-            ->add('save', 'submit')
+            ->add('save', 'submit', ['attr' => array('class' => 'submit-btn')])
         ;
     }
 

@@ -1,20 +1,50 @@
 (function(){
-	// colorWave for title
+	// color array for colorWave
 	var COLORS = ['#25B972', '#ff6767', '#FFA533', '#585ec7', '#FF8359'];
-	$('.doodle').colorWave(COLORS);
+	main(COLORS);
+})();
+
+function main(colors) {
+	// colorWave for title
+	$('.doodle').colorWave(colors);
 	setInterval(function() {
-		$('.doodle').colorWave(COLORS);
+		$('.doodle').colorWave(colors);
+		$('.new-doodle').colorWave(colors);
+		$('.inner-title').colorWave(colors);
 	}, 3000);
+	newDoodle();
+	colorEntries();
+	chooseBackground();
 
 	// Canvas init
 	init();
-})();
+}
+
+function newDoodle() {
+	$('.new-doodle').on('click', function() {
+		$(this).toggleClass('hidden');
+		$('.controls, .doodle-form').toggleClass('hidden');
+	});
+}
+
+function colorEntries() {
+	var colors = ['#544B8D', '#984681', '#A6C159', '#896AA4', '#B671A3', '#7971A9'];
+	var counter = 0;
+	$('.entry').each(function() {
+		if (counter > colors.length -1) {
+			counter = 0;
+		}
+		var colorChoice = colors[counter];
+		$(this).css('background-color', colorChoice);
+		counter += 1;
+	});
+}
 
 function clearCanvas() {
 	$('.clear-canvas').on('click', function() {
 		stage.clear();
 		var myImage = new Image();
-		var src = '/bundles/BaconDoodle/Resources/public/img/bacon6.jpg';
+		var src = '/bundles/BaconDoodle/Resources/public/img/bacon' + currentPic + '.jpg';
 		myImage.src = src;
 		$(myImage).on('load', function() {
 			var ctx = canvas.getContext('2d');
@@ -43,6 +73,37 @@ function strokeSize() {
 	});
 }
 
+function chooseBackground() {
+	$('.background-prev').on('click', function() {
+		currentPic -= 1;
+		if (currentPic < 1) {
+			currentPic = 6;
+		}
+		stage.clear();
+		var myImage = new Image();
+		var src = '/bundles/BaconDoodle/Resources/public/img/bacon' + currentPic + '.jpg';
+		myImage.src = src;
+		$(myImage).on('load', function() {
+			var ctx = canvas.getContext('2d');
+			ctx.drawImage(myImage, 0, 0, myImage.width, myImage.height, 0, 0, canvas.width, canvas.height);
+		});
+	});
+	$('.background-next').on('click', function() {
+		currentPic += 1;
+		if (currentPic > 6) {
+			currentPic = 1;
+		}
+		stage.clear();
+		var myImage = new Image();
+		var src = '/bundles/BaconDoodle/Resources/public/img/bacon' + currentPic + '.jpg';
+		myImage.src = src;
+		$(myImage).on('load', function() {
+			var ctx = canvas.getContext('2d');
+			ctx.drawImage(myImage, 0, 0, myImage.width, myImage.height, 0, 0, canvas.width, canvas.height);
+		});
+	});
+}
+
 var canvas, stage;
 var drawingCanvas;
 var oldPt;
@@ -52,14 +113,18 @@ var color;
 var stroke;
 var colors;
 var index;
+var currentPic;
 
 function init() {
 	canvas = document.getElementById("bacon-canvas");
 	index = 0;
 	color = '#FFFFFF';
 	stroke = 1;
+	if (currentPic === undefined) {
+		currentPic = 1;
+	}
 	var myImage = new Image();
-	var src = '/bundles/BaconDoodle/Resources/public/img/bacon6.jpg';
+	var src = '/bundles/BaconDoodle/Resources/public/img/bacon' + currentPic + '.jpg';
 	myImage.src = src;
 	$(myImage).on('load', function() {
 		var ctx = canvas.getContext('2d');
