@@ -21,36 +21,34 @@ class __TwigTemplate_562f0ef7d7052eec0e5fedd1bfee488a261805941fa853d6ac90ddf961b
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_a43e652744848cb989ea226fb497820393de04fab55c78b6b5df933e919ada4f = $this->env->getExtension("native_profiler");
-        $__internal_a43e652744848cb989ea226fb497820393de04fab55c78b6b5df933e919ada4f->enter($__internal_a43e652744848cb989ea226fb497820393de04fab55c78b6b5df933e919ada4f_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/doodle.html.twig"));
+        $__internal_08c96e37a4ed51f58a9558e334401c049d6c18cf670bc893300c3bf78013b27a = $this->env->getExtension("native_profiler");
+        $__internal_08c96e37a4ed51f58a9558e334401c049d6c18cf670bc893300c3bf78013b27a->enter($__internal_08c96e37a4ed51f58a9558e334401c049d6c18cf670bc893300c3bf78013b27a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/doodle.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_a43e652744848cb989ea226fb497820393de04fab55c78b6b5df933e919ada4f->leave($__internal_a43e652744848cb989ea226fb497820393de04fab55c78b6b5df933e919ada4f_prof);
+        $__internal_08c96e37a4ed51f58a9558e334401c049d6c18cf670bc893300c3bf78013b27a->leave($__internal_08c96e37a4ed51f58a9558e334401c049d6c18cf670bc893300c3bf78013b27a_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_b2f2cb337d278a74d5e993509e41ca71123e637048bde94f331c7b41f320bdb7 = $this->env->getExtension("native_profiler");
-        $__internal_b2f2cb337d278a74d5e993509e41ca71123e637048bde94f331c7b41f320bdb7->enter($__internal_b2f2cb337d278a74d5e993509e41ca71123e637048bde94f331c7b41f320bdb7_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_1914c4ef06749cdb4894970a41562108110787816a96480be3f41356a30fdb74 = $this->env->getExtension("native_profiler");
+        $__internal_1914c4ef06749cdb4894970a41562108110787816a96480be3f41356a30fdb74->enter($__internal_1914c4ef06749cdb4894970a41562108110787816a96480be3f41356a30fdb74_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    <div class=\"container\">
         <div class=\"title\">Bacon<span class=\"doodle\">Doodle!</span></div>
 
-        <div class=\"bacon-img\">
+        <div class=\"canvas\">
             <canvas id=\"bacon-canvas\"></canvas>
             <div class=\"clear-canvas\">Clear</div>
 
             <div class=\"controls hidden\">
-                <div class=\"inner-title left\">Controls</div>
-
                 <input class=\"color\">
                 <div id=\"color-icon\" class=\"control-icon\">
                     <img src=\"";
-        // line 16
+        // line 14
         echo twig_escape_filter($this->env, $this->env->getExtension('asset')->getAssetUrl("bundles/BaconDoodle/Resources/public/img/palette.png"), "html", null, true);
         echo "\">
                 </div>
@@ -79,24 +77,24 @@ class __TwigTemplate_562f0ef7d7052eec0e5fedd1bfee488a261805941fa853d6ac90ddf961b
             <div class=\"inner-title right\">Save Doodle</div>
 
             ";
-        // line 42
+        // line 40
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_start');
         echo "
             ";
-        // line 43
+        // line 41
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'errors');
         echo "
 
             ";
-        // line 45
+        // line 43
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "author", array()), 'row');
         echo "
             ";
-        // line 46
+        // line 44
         echo $this->env->getExtension('form')->renderer->searchAndRenderBlock($this->getAttribute((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), "title", array()), 'row');
         echo "
             ";
-        // line 47
+        // line 45
         echo         $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form_end');
         echo "
         </div>
@@ -105,31 +103,31 @@ class __TwigTemplate_562f0ef7d7052eec0e5fedd1bfee488a261805941fa853d6ac90ddf961b
             <div id=\"prev-doodles\" class=\"inner-title left\">All Doodles</div>
 
             ";
-        // line 53
+        // line 51
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute((isset($context["data"]) ? $context["data"] : $this->getContext($context, "data")), "entries", array()));
         foreach ($context['_seq'] as $context["_key"] => $context["entry"]) {
-            // line 54
+            // line 52
             echo "                <div class=\"entry\">
                     <div class=\"doodle-id\">";
-            // line 55
+            // line 53
             echo twig_escape_filter($this->env, $this->getAttribute($context["entry"], "id", array()), "html", null, true);
             echo "</div>
                     <div class=\"doodle-pic\"><img src=\"";
-            // line 56
+            // line 54
             echo twig_escape_filter($this->env, $this->getAttribute($context["entry"], "data", array()), "html", null, true);
             echo "\"></div>
                     <div class=\"entry-title\">";
-            // line 57
+            // line 55
             echo twig_escape_filter($this->env, $this->getAttribute($context["entry"], "title", array()), "html", null, true);
             echo "</div>
                     <div class=\"author-date\">
                         <div class=\"author\">";
-            // line 59
+            // line 57
             echo twig_escape_filter($this->env, $this->getAttribute($context["entry"], "author", array()), "html", null, true);
             echo "</div>
                         <div class=\"created\">";
-            // line 60
+            // line 58
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["entry"], "created", array()), "m/d/Y"), "html", null, true);
             echo "</div>
                     </div>
@@ -139,12 +137,12 @@ class __TwigTemplate_562f0ef7d7052eec0e5fedd1bfee488a261805941fa853d6ac90ddf961b
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entry'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 64
+        // line 62
         echo "        </div>
     </div>
 ";
         
-        $__internal_b2f2cb337d278a74d5e993509e41ca71123e637048bde94f331c7b41f320bdb7->leave($__internal_b2f2cb337d278a74d5e993509e41ca71123e637048bde94f331c7b41f320bdb7_prof);
+        $__internal_1914c4ef06749cdb4894970a41562108110787816a96480be3f41356a30fdb74->leave($__internal_1914c4ef06749cdb4894970a41562108110787816a96480be3f41356a30fdb74_prof);
 
     }
 
@@ -160,7 +158,7 @@ class __TwigTemplate_562f0ef7d7052eec0e5fedd1bfee488a261805941fa853d6ac90ddf961b
 
     public function getDebugInfo()
     {
-        return array (  143 => 64,  133 => 60,  129 => 59,  124 => 57,  120 => 56,  116 => 55,  113 => 54,  109 => 53,  100 => 47,  96 => 46,  92 => 45,  87 => 43,  83 => 42,  54 => 16,  40 => 4,  34 => 3,  11 => 1,);
+        return array (  141 => 62,  131 => 58,  127 => 57,  122 => 55,  118 => 54,  114 => 53,  111 => 52,  107 => 51,  98 => 45,  94 => 44,  90 => 43,  85 => 41,  81 => 40,  52 => 14,  40 => 4,  34 => 3,  11 => 1,);
     }
 }
 /* {% extends 'base.html.twig' %}*/
@@ -169,13 +167,11 @@ class __TwigTemplate_562f0ef7d7052eec0e5fedd1bfee488a261805941fa853d6ac90ddf961b
 /*     <div class="container">*/
 /*         <div class="title">Bacon<span class="doodle">Doodle!</span></div>*/
 /* */
-/*         <div class="bacon-img">*/
+/*         <div class="canvas">*/
 /*             <canvas id="bacon-canvas"></canvas>*/
 /*             <div class="clear-canvas">Clear</div>*/
 /* */
 /*             <div class="controls hidden">*/
-/*                 <div class="inner-title left">Controls</div>*/
-/* */
 /*                 <input class="color">*/
 /*                 <div id="color-icon" class="control-icon">*/
 /*                     <img src="{{  asset('bundles/BaconDoodle/Resources/public/img/palette.png') }}">*/
