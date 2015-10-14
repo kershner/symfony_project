@@ -13,7 +13,7 @@ use \DateTime;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/bacon", name="Home")
+     * @Route("/", name="Home")
      */
     public function doodleAction(Request $request)
     {
@@ -55,5 +55,42 @@ class DefaultController extends Controller
         }
 
         return $this->render('default/doodle.html.twig', array('data' => $data, 'form' => $form->createView()));
+    }
+
+    /**
+     * @Route("/api/{id}", name="doodle_api")
+     */
+    public function apiAction (Request $request, $id)
+    {
+        $doodle = $this->getDoctrine()
+            ->getRepository('AppBundle:Doodle')
+            ->find($id);
+
+        if (!$doodle) {
+            $message = 'No doodle found for id '.$id;
+
+            $response = new Response(json_encode(array('error' => $message)));
+            $response->headers->set('Content-Type', 'application/json');
+
+            return $response;
+        }
+
+        $created = $doodle->created;
+        $title = $doodle->title;
+        $author = $doodle->author;
+        $dataUrl = $doodle->data;
+
+        $data = array(
+            'id' => $id,
+            'created' => $created,
+            'title' => $title,
+            'author' => $author,
+            'dataUrl' => $dataUrl
+            );
+
+        $response = new Response(json_encode(array('doodle' => $data)));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }

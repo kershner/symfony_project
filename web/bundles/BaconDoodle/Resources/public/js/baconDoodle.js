@@ -144,11 +144,6 @@ function init() {
 	stage.addEventListener("stagemousedown", handleMouseDown);
 	stage.addEventListener("stagemouseup", handleMouseUp);
 
-	title = new createjs.Text("Click and Drag to draw", "36px Arial", "#777777");
-	title.x = 300;
-	title.y = 200;
-	stage.addChild(title);
-
 	stage.addChild(drawingCanvas);
 	stage.update();
 
