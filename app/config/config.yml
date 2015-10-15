@@ -52,12 +52,12 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-#        driver:   pdo_pgsql
-#        host:
-#        port:     5432
-#        dbname:
-#        user:
-#        password: 
+        driver:   pdo_pgsql
+        host:     ec2-54-83-29-15.compute-1.amazonaws.com
+        port:     5432
+        dbname:   d2odlqtfjdtd3h
+        user:     eatzgtpnbjjojk
+        password: HGoMDI0LVg9VEi-BpFIqnF2kBm
         charset:  UTF8
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
