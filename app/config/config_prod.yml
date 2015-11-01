@@ -7,13 +7,13 @@ imports:
 #    serializer:
 #        cache: serializer.mapping.cache.apc
 
-doctrine:
-        driver:   pdo_pgsql
-        host:     ec2-54-83-29-15.compute-1.amazonaws.com
-        port:     5432
-        dbname:   d2odlqtfjdtd3h
-        user:     eatzgtpnbjjojk
-        password: HGoMDI0LVg9VEi-BpFIqnF2kBm
+#doctrine:
+#        driver:   pdo_pgsql
+#        host:     ec2-54-83-29-15.compute-1.amazonaws.com
+#        port:     5432
+#        dbname:   d2odlqtfjdtd3h
+#        user:     eatzgtpnbjjojk
+#        password: HGoMDI0LVg9VEi-BpFIqnF2kBm
 
 monolog:
     handlers:
