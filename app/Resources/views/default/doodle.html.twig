@@ -1,14 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="container">
-        <div class="title">Bacon<span class="doodle">Doodle!</span></div>
+        <div class="nav">
+            <div class="container">
+                <div class="row">
+                    <span class="big-title col-md-8">Bacon<span class="doodle">Doodle!</span></span>
 
-        <div class="canvas">
-            <canvas id="bacon-canvas"></canvas>
-            <div class="clear-canvas">Clear</div>
+                    <div class="nav-menu col-md-4">
+                        <div><a href="#">Home</a></div>
+                        <div><a href="#">Signup</a></div>
+                        <div><a href="#">Login</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <div class="controls hidden">
+        <div class="row canvas-row">
+            <div class="canvas">
+                <canvas id="bacon-canvas"></canvas>
+                <div class="clear-canvas">Clear</div>
+            </div>
+        </div>
+
+        <div class="row row-centered controls-row animate">
+            <div class="new-doodle col-md-12 col-centered">New Doodle</div>
+
+            <div class="controls col-md-6 col-centered hidden">
                 <input class="color">
                 <div id="color-icon" class="control-icon">
                     <img src="{{  asset('bundles/BaconDoodle/Resources/public/img/palette.png') }}">
@@ -30,26 +47,28 @@
                     <i class="fa fa-long-arrow-right background-next"></i>
                 </div>
             </div>
+
+            <div class="doodle-form col-md-6 col-centered hidden">
+                <div class="inner-title right">Save Doodle</div>
+
+                {{  form_start(form) }}
+                {{ form_errors(form) }}
+
+                {{ form_row(form.author) }}
+                {{ form_row(form.title) }}
+                {{  form_end(form) }}
+            </div>
         </div>
 
-        <div class="new-doodle">New Doodle</div>
-
-        <div class="doodle-form hidden">
-            <div class="inner-title right">Save Doodle</div>
-
-            {{  form_start(form) }}
-            {{ form_errors(form) }}
-
-            {{ form_row(form.author) }}
-            {{ form_row(form.title) }}
-            {{  form_end(form) }}
-        </div>
-
-        <div class="doodles">
-            <div id="prev-doodles" class="inner-title left">All Doodles</div>
+        <div class="row doodles-row row-centered">
+            <div id="prev-doodles">Previous Doodles</div>
 
             {% for entry in data.entries %}
-                <div class="entry">
+                <div class="entry col-md-4 col-centered">
+                    <div class="doodle-icons">
+                        <div class="doodle-comments-new"><i class="fa fa-pencil-square-o"></i></div>
+                        <div class="doodle-comments"><i class="fa fa-comment-o"></i><span>2</span></div>
+                    </div>
                     <div class="doodle-id">{{ entry.id }}</div>
                     <div class="doodle-pic"><img src="{{ entry.data }}"></div>
                     <div class="entry-title">{{ entry.title }}</div>
@@ -60,5 +79,4 @@
                 </div>
             {% endfor %}
         </div>
-    </div>
 {% endblock %}

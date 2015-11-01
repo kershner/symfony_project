@@ -1,5 +1,4 @@
 body {
-	background-color: #694489;
 	font-family: 'Roboto', sans-serif;
 	color: white;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
@@ -35,40 +34,63 @@ select {
 	border-radius: .5em;
 	background-color: white;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	color: black;
+}
+/* centered column styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+	display: inline-block;
+	float: none;
+	/* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
 }
 .hidden {
 	display: none;
 }
 .selected {
 	opacity: 0.6;
-}f
+}
 /* CSS Transitions */
 .animate {
 	transition: all .4s ease-in-out;
 }
-.container {
-	position: relative;
-}
-.title {
-	margin: .25em auto;
-	max-width: 8em;
+.nav {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	padding: .25em .75em;
+	width: 100%;
 	color: #2e2e2e;
-	text-align: center;
-	font-size: 14vw;
 	text-shadow: none;
 	background-color: #F2F2F2;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
-	border-radius: .1em;
 }
-@media(min-width: 500px) {
-	.title {
-		font-size: 5em;
+.big-title {
+	font-size: 2.25em;
+}
+.nav-menu {
+	display: inline-block;
+	right: 0;
+}
+@media (min-width: 960px) {
+	.nav-menu {
+		top: 1em;
 	}
+}
+.nav-menu div {
+	display: inline-block;
+	margin: auto .5em;
+	padding: .25em;
 }
 .inner-title {
     position: absolute;
     padding: .25em;
-    top: -1.25em;
+    top: -1.75em;
     background-color: #f2f2f2;
     color: #2e2e2e;
     text-shadow: none;
@@ -87,10 +109,22 @@ select {
 .colorwave {
 	position: relative;
 }
+.canvas-row {
+	position: relative;
+	padding-top: 8em;
+	padding-bottom: 2em;
+	background-color: #896AA4;
+}
 .canvas {
 	position: relative;
-	height: 450px;
-	width: 450px;
+	width: 300px;
+	height: 300px
+}
+@media (min-width: 480px) {
+	.canvas {
+		width: 450px;
+		height: 450px
+	}
 }
 #bacon-canvas {
 	position: relative;
@@ -103,7 +137,7 @@ select {
 }
 .clear-canvas {
 	position: absolute;
-	right: .5em;
+	right: 1.25em;
 	top: 1em;
 }
 .clear-canvas:hover {
@@ -113,16 +147,25 @@ select {
 .clear-canvas:active {
 	margin-top: .4em;
 }
+.controls-row {
+	padding: 0;
+	background-color: #F2F2F2;
+}
+.controls-row div {
+	margin: 1em;
+	vertical-align: top;
+}
 .new-doodle {
 	position: relative;
 	margin: 1em auto;
 	margin-bottom: 1.5em;
-	width: 7em;
+	max-width: 7em;
 	background-color: #A6C159;
 	font-family: 'Lobster';
 	font-size: 12vw;
 	text-align: center;
 	border: .1em solid white;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	border-radius: .25em;
 }
 @media(min-width: 400px) {
@@ -137,8 +180,6 @@ select {
 }
 .doodle-form {
 	position: relative;
-	margin: 2em auto;
-	margin-top: 3em;
 	padding: .75em;
 	max-width: 20em;
 	border-radius: .25em;
@@ -160,12 +201,9 @@ select {
 	transform: scale(1.1);
 }
 .controls {
-	position: absolute;
-	top: 0;
-	left: -10.5em;
-    margin: 1em auto;
+    position: relative;
 	padding: .5em;
-	width: 9em;
+	width: 11em;
 	background-color: #F2F2F2;
     border-radius: .25em;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
@@ -182,12 +220,12 @@ select {
 	box-shadow: none;
 }
 #color-icon {
-	top: 1em;
-    left: 7.5em;
+	top: .25em;
+    left: 6.25em;
 }
 #stroke-size-icon {
-	bottom: 3.05em;
-    left: 5em;
+	bottom: 2.75em;
+    left: 4.75em;
     font-size: 1.25em;
 }
 .controls input {
@@ -202,6 +240,7 @@ select {
 .stroke-size {
 	position: relative;
 	left: .5em;
+	width: 5.5em;
 }
 .choose-background {
 	display: block;
@@ -229,16 +268,13 @@ select {
 	cursor: pointer;
 	transform: scale(1.3);
 }
-.doodles {
-	margin: 0 auto;
-	padding: .25em;
-	max-width: 700px;
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
-	background-color: #F2F2F2;
-	border-radius: .25em;
+.doodles-row {
+	padding: 2em;
+	background-color: #896AA4;
 }
 #prev-doodles {
-	font-size: 1.75em;
+	margin-top: -.5em;
+	font-size: 3em;
 }
 .entry {
 	display: inline-block;
@@ -261,12 +297,32 @@ select {
 	z-index: 1;
 	top: -.5em;
 	right: -.25em;
-	padding: .5em .75em;
+	padding: .5em 1em;
 	font-size: 1em;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	border-radius: 50%;
 	background-color: #F2F2F2;
 	color: black;
+}
+.doodle-icons {
+	position: absolute;
+	z-index: 2;
+	bottom: .5em;
+	right: .75em;
+}
+.doodle-icons div {
+	display: inline-block;
+	position: relative;
+	margin: 0 .1em;
+	font-size: 1.15em;
+	text-shadow: 1px 1px 3px rgb(0, 0, 0);
+}
+.doodle-comments-new {
+	top: .1em;
+}
+.doodle-comments-new:hover {
+	cursor: pointer;
+	transform: scale(1.75);
 }
 .doodle-pic img {
 	width: 100%;
