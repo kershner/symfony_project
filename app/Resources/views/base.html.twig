@@ -26,7 +26,28 @@
     </head>
     <body>
         <div class="container-fluid">
+            <div class="nav">
+                <div class="container">
+                    <div class="row">
+                        <span class="big-title col-md-8">Bacon<span class="doodle">Doodle!</span></span>
+
+                        <div class="nav-menu col-md-4">
+                            <div class="animate-fast"><a href="/">Home</a></div>
+                            <div class="animate-fast"><a href="#">Signup</a></div>
+                            <div class="animate-fast"><a href="#">Login</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         {% block body %}{% endblock %}
+            <div class="row row-centered footer">
+                <a href="https://github.com/kershner/symfony_project/">
+                    <div class="github col-md-1 col-centered animate-fast">
+                        <i class="fa fa-github"></i>
+                        <span>Source</span>
+                    </div>
+                </a>
+            </div>
         </div>
 
         {% block javascripts %}

@@ -1,29 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-        <div class="nav">
-            <div class="container">
-                <div class="row">
-                    <span class="big-title col-md-8">Bacon<span class="doodle">Doodle!</span></span>
-
-                    <div class="nav-menu col-md-4">
-                        <div><a href="#">Home</a></div>
-                        <div><a href="#">Signup</a></div>
-                        <div><a href="#">Login</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="row canvas-row">
             <div class="canvas">
                 <canvas id="bacon-canvas"></canvas>
-                <div class="clear-canvas">Clear</div>
+                <div class="clear-canvas animate-fast">Clear</div>
             </div>
         </div>
 
         <div class="row row-centered controls-row animate">
-            <div class="new-doodle col-md-12 col-centered">New Doodle</div>
+            <div class="close-controls animate-fast hidden"><i class="fa fa-times"></i></div>
+
+            <div class="new-doodle col-md-12 col-centered animate-fast">New Doodle</div>
 
             <div class="controls col-md-6 col-centered hidden">
                 <input class="color">
@@ -42,9 +30,9 @@
                 </div>
 
                 <div class="choose-background">
-                    <i class="fa fa-long-arrow-left background-prev"></i>
+                    <i class="fa fa-long-arrow-left background-prev animate-fast"></i>
                     <span>Background</span>
-                    <i class="fa fa-long-arrow-right background-next"></i>
+                    <i class="fa fa-long-arrow-right background-next animate-fast"></i>
                 </div>
             </div>
 
@@ -61,18 +49,18 @@
         </div>
 
         <div class="row doodles-row row-centered">
-            <div id="prev-doodles">Previous Doodles</div>
+            <div id="prev-doodles"><span class="lobster">P</span>revious <span class="lobster">D</span>oodles</div>
 
             {% for entry in data.entries %}
-                <div class="entry col-md-4 col-centered">
+                <div class="entry col-md-4 col-centered animate-fast">
                     <div class="doodle-icons">
-                        <div class="doodle-comments-new"><i class="fa fa-pencil-square-o"></i></div>
-                        <div class="doodle-comments"><i class="fa fa-comment-o"></i><span>4</span></div>
+                        <div class="doodle-comments-new animate-fast"><i class="fa fa-pencil-square-o"></i></div>
+                        <div class="doodle-comments animate-fast"><i class="fa fa-comment-o"></i><span>4</span></div>
                     </div>
-                    <div class="doodle-id">{{ entry.id }}</div>
+                    <div class="doodle-id animate-fast">{{ entry.id }}</div>
                     <div class="doodle-pic"><img src="{{ entry.data }}"></div>
                     <div class="entry-title">{{ entry.title }}</div>
-                    <div class="author-date">
+                    <div class="author-date animate-fast">
                         <div class="author">{{ entry.author }}</div>
                         <div class="created">{{ entry.created|date("m/d/Y") }}</div>
                     </div>

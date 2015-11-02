@@ -13,6 +13,7 @@ function main(colors) {
 		$('.inner-title').colorWave(colors);
 	}, 3000);
 	newDoodle();
+	closeControls();
 	colorEntries();
 	chooseBackground();
 
@@ -22,12 +23,20 @@ function main(colors) {
 
 function newDoodle() {
 	$('.new-doodle').on('click', function() {
+		console.log('Clicked!');
 		$(this).toggleClass('hidden');
 		$(this).parents('.controls-row').css({
 			'background-color': '#D1E890',
 			'padding': '2.5em'
 		});
-		$('.controls, .doodle-form').toggleClass('hidden');
+		$('.controls, .doodle-form, .close-controls').toggleClass('hidden');
+	});
+}
+
+function closeControls() {
+	$('.close-controls').on('click', function () {
+		$(this).toggleClass('hidden');
+		$(this).siblings('.controls, .doodle-form, .new-doodle').toggleClass('hidden');
 	});
 }
 
@@ -40,6 +49,8 @@ function colorEntries() {
 		}
 		var colorChoice = colors[counter];
 		$(this).css('background-color', colorChoice);
+		$(this).children('.author-date').css('background-color', colorChoice);
+		$(this).children('.doodle-id').css('background-color', colorChoice);
 		counter += 1;
 	});
 }
