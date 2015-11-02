@@ -25,7 +25,7 @@ class Comment
 	/**
      * @ORM\Column(name="author", type="string", length=100)
      */
-    public $author = '';
+    public $author;
 
 	/**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Doodle")

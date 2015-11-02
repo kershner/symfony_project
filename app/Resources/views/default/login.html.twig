@@ -1,0 +1,5 @@
+{% extends 'base.html.twig' %}
+
+{% for flashMessage in app.session.flashbang.get('message') %}
+	{{ flashMessage }}
+{% endfor %}
