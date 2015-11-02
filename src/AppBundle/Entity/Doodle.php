@@ -17,17 +17,23 @@ class Doodle
     public $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    public $user;
+
+    /**
+     * @ORM\Column(name="author", type="string", length=100)
+     */
+    public $author = '';
+
+    /**
      * @ORM\Column(name="created", type="date")
      */
     public $created;
 
     /**
-     * @ORM\Column(name="author", type="string", length=100, nullable=true)
-     */
-    public $author = 'Anonymous';
-
-    /**
-     * @ORM\Column(name="title", type="string", length=100, nullable=true)
+     * @ORM\Column(name="title", type="string", length=100)
      */
     public $title = ' ';
 
@@ -35,6 +41,16 @@ class Doodle
      * @ORM\Column(name="data", type="text")
      */
     public $data;
+
+    /**
+    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="doodle")
+    */
+    public $comments;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * Get id
