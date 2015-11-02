@@ -7,6 +7,9 @@ div {
 	position: relative;
 	margin: 0 auto;
 }
+a:hover {
+	text-decoration: none;
+}
 input {
 	display: block;
 	margin: .25em auto;
@@ -16,6 +19,7 @@ input {
 	border: none;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	font-size: 1.5em;
+	color: black;
 }
 input:hover {
 	cursor: pointer;
@@ -77,15 +81,20 @@ select {
 	display: inline-block;
 	right: 0;
 }
-@media (min-width: 960px) {
+@media (min-width: 990px) {
 	.nav-menu {
-		top: 1em;
+		top: .5em;
 	}
 }
 .nav-menu div {
 	display: inline-block;
 	margin: auto .5em;
-	padding: .25em;
+	padding: .5em;
+	border-radius: .25em;
+}
+.nav-menu div:hover {
+	background-color: #e6e6e6;
+	box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.46);
 }
 .inner-title {
     position: absolute;
@@ -117,8 +126,8 @@ select {
 }
 .canvas {
 	position: relative;
-	width: 300px;
-	height: 300px
+	width: 260px;
+	height: 260px
 }
 @media (min-width: 480px) {
 	.canvas {
@@ -150,6 +159,7 @@ select {
 .controls-row {
 	padding: 0;
 	background-color: #F2F2F2;
+	box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.46);
 }
 .controls-row div {
 	margin: 1em;
@@ -269,12 +279,16 @@ select {
 	transform: scale(1.3);
 }
 .doodles-row {
-	padding: 2em;
+	padding-bottom: 2em;
 	background-color: #896AA4;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.46);
 }
 #prev-doodles {
-	margin-top: -.5em;
-	font-size: 3em;
+	margin: .25em auto;
+	margin-top: .75em;
+	font-size: 2em;
+	font-family: 'Raleway', sans-serif;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 .entry {
 	display: inline-block;
@@ -282,8 +296,8 @@ select {
 	margin: 1em;
 	padding: .5em;
 	vertical-align: top;
-	max-height: 400px;
-	max-width: 400px;
+	max-width: 240px;
+	max-height: 250px;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	background-color: #B39CC6;
 	border-radius: .25em;
@@ -295,8 +309,8 @@ select {
 .doodle-id {
 	position: absolute;
 	z-index: 1;
-	top: -.5em;
-	right: -.25em;
+	bottom: -.75em;
+    right: -.25em;
 	padding: .5em 1em;
 	font-size: 1em;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
@@ -307,8 +321,8 @@ select {
 .doodle-icons {
 	position: absolute;
 	z-index: 2;
-	bottom: .5em;
-	right: .75em;
+	top: .85em;
+	right: 1em;
 }
 .doodle-icons div {
 	display: inline-block;
@@ -320,35 +334,46 @@ select {
 .doodle-comments-new {
 	top: .1em;
 }
-.doodle-comments-new:hover {
+.doodle-comments-new:hover, .doodle-comments:hover {
 	cursor: pointer;
 	transform: scale(1.75);
 }
 .doodle-pic img {
-	width: 100%;
-	height: 100%;
+	width: 225px;
+	height: 225px;
 	margin: 0 auto;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 	border-radius: .25em;
 }
 .entry-title {
-	position: absolute;
-	margin: 0 auto;
-	left: 0;
-	right: 0;
-	bottom: .25em;
-	text-align: center;
-	font-size: 2.5em;
-	text-shadow: 1px 3px 3px rgba(0, 0, 0, 0.9);
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    bottom: .35em;
+    width: 95%;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 1.5em;
+    font-family: 'Raleway', sans-serif;
+    text-shadow: 1px 3px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 .15em .15em;
 }
 .author-date {
     position: absolute;
     top: .25em;
     left: .25em;
     padding: .5em;
+    padding-top: .75em;
     background-color: #F2F2F2;
     border-radius: .25em;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
     color: #2e2e2e;
     text-shadow: none;
+}
+.author {
+	font-weight: 800;
+}
+.created {
+	font-size: .9em;
 }

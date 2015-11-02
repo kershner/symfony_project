@@ -23,7 +23,10 @@ function main(colors) {
 function newDoodle() {
 	$('.new-doodle').on('click', function() {
 		$(this).toggleClass('hidden');
-		$(this).parents('.controls-row').css('background-color', '#D1E890');
+		$(this).parents('.controls-row').css({
+			'background-color': '#D1E890',
+			'padding': '2.5em'
+		});
 		$('.controls, .doodle-form').toggleClass('hidden');
 	});
 }
