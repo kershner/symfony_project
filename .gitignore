@@ -10,3 +10,12 @@
 /vendor/
 #/web/bundles/
 .idea
+app/SymfonyRequirements.php
+app/bootstrap.php.cache
+app/check.php
+app/logs/dev.log
+composer.lock
+src/AppBundle/Entity/Doodle.php~
+web/bundles/framework
+web/bundles/sensiodistribution
+web/config.php

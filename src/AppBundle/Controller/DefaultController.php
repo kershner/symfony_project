@@ -23,12 +23,15 @@ class DefaultController extends Controller
             ->getRepository('AppBundle:Doodle')
             ->findAll();
 
+        $user = $this->getUser();
+
         // Instantiating Doodle object
         $doodle = new Doodle();
 
         // Variables for final response
         $data = array(
             'title' => 'BaconDoodle!',
+            'user' => $user,
             'entries' => $entries,
         );
 
@@ -64,20 +67,22 @@ class DefaultController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $user = new User();
-        $form = $this->createForm(new UserType(), $user);
+        $user = $this->getUser();
+
+        $new_user = new User();
+        $form = $this->createForm(new UserType(), $new_user);
 
         // Handle form POST request
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted()) {
             // Encode password
             $password = $this->get('security.password_encoder')
-                ->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
+                ->encodePassword($new_user, $new_user->getPlainPassword());
+            $new_user->setPassword($password);
 
             // Save the user to DB
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+            $em->persist($new_user);
             $em->flush();
 
             $this->addFlash('message', 'You have successfully registered!  Please log in.');
@@ -85,18 +90,50 @@ class DefaultController extends Controller
             return $this->redirectToRoute('Login');
         }
 
+        return $this->render('security/register.html.twig', array('form' => $form->createView(), 'data' => ['user' => $user]));
+    }
+
+    /**
+     * @Route("/login", name="login_route")
+     */
+    public function loginAction(Request $request)
+    {
+        $authenticationUtils = $this->get('security.authentication_utils');
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+        $user = $this->getUser();
+
         return $this->render(
-            'default/register.html.twig',
-            array('form' => $form->createView())
+            'security/login.html.twig',
+            array(
+                'last_username' => $lastUsername,
+                'error' => $error,
+                'data' => ['user' => $user],
+            )
         );
     }
 
     /**
-    * @Route("/login", name="Login")
-    */
-    public function loginAction(Request $request)
+     * @Route("/login_check", name="login_check")
+     */
+    public function loginCheckAction(Request $request)
     {
-        return $this->render('default/login.html.twig');
+
+    }
+
+    /**
+     * @Route("/view_users", name="view_users")
+     */
+    public function viewUsersAction(Request $request)
+    {
+        $users = $this->getDoctrine()
+            ->getRepository('AppBundle:User')
+            ->findAll();
+
+        $data = array(
+            'users' => $users
+        );
+        return $this->render('default/view_users.html.twig', array('data' => $data));
     }
 
     /**

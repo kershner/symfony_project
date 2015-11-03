@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% for user in data.users %}
+    {{ user.id }} <br>
+    {{ user.username }} <br>
+    {{ user.email }} <br>
+    {{ user.plainPassword }} <br>
+    {{ user.password }} <br>
+{% endfor %}
+
+{% endblock %}

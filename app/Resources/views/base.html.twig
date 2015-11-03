@@ -22,7 +22,7 @@
         <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
-        <link rel="icon" type="image/png" href="favicon.png" />
+        <link rel="icon" type="image/png" href="{{ asset('bundles/BaconDoodle/Resources/public/img/favicon.png') }}" />
     </head>
     <body>
         <div class="container-fluid">
@@ -33,8 +33,12 @@
 
                         <div class="nav-menu col-md-4">
                             <div class="animate-fast"><a href="/">Home</a></div>
-                            <div class="animate-fast"><a href="#">Signup</a></div>
-                            <div class="animate-fast"><a href="#">Login</a></div>
+                            {%  if data.user  %}
+                            <div class="animate-fast"><a href="/logout">Logout</a></div>
+                            {% else %}
+                            <div class="animate-fast"><a href="/register">Signup</a></div>
+                            <div class="animate-fast"><a href="/login">Login</a></div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

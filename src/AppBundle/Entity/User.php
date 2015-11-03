@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -50,6 +51,11 @@ class User implements UserInterface, \Serializable
      */
     public $isActive;
 
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
 	/**
 	* @ORM\OneToMany(targetEntity="AppBundle\Entity\Doodle", mappedBy="user")
 	*/
@@ -70,6 +76,11 @@ class User implements UserInterface, \Serializable
 	public function getSalt()
     {
         return null;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
     }
 
 	public function getRoles()
@@ -98,5 +109,169 @@ class User implements UserInterface, \Serializable
             $this->username,
             $this->password,
         ) = unserialize($serialized);
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    
+        return $this;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    
+        return $this;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Add doodle
+     *
+     * @param \AppBundle\Entity\Doodle $doodle
+     *
+     * @return User
+     */
+    public function addDoodle(\AppBundle\Entity\Doodle $doodle)
+    {
+        $this->doodles[] = $doodle;
+    
+        return $this;
+    }
+
+    /**
+     * Remove doodle
+     *
+     * @param \AppBundle\Entity\Doodle $doodle
+     */
+    public function removeDoodle(\AppBundle\Entity\Doodle $doodle)
+    {
+        $this->doodles->removeElement($doodle);
+    }
+
+    /**
+     * Get doodles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDoodles()
+    {
+        return $this->doodles;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+    
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \AppBundle\Entity\Comment $comment
+     */
+    public function removeComment(\AppBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }
