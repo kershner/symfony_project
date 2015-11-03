@@ -51,11 +51,6 @@ class User implements UserInterface, \Serializable
      */
     public $isActive;
 
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
 	/**
 	* @ORM\OneToMany(targetEntity="AppBundle\Entity\Doodle", mappedBy="user")
 	*/
@@ -73,17 +68,7 @@ class User implements UserInterface, \Serializable
 		$this->comments = new ArrayCollection();
 	}
 
-	public function getSalt()
-    {
-        return null;
-    }
-
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-	public function getRoles()
+    public function getRoles()
     {
         return array('ROLE_USER');
     }
@@ -135,14 +120,14 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getPlainPassword()
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
     {
-        return $this->plainPassword;
-    }
-
-    public function setPlainPassword($password)
-    {
-        $this->plainPassword = $password;
+        return $this->username;
     }
 
     /**
@@ -181,6 +166,25 @@ class User implements UserInterface, \Serializable
         $this->password = $password;
     
         return $this;
+    }
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function getSalt()
+    {
+        return null;
     }
 
     /**

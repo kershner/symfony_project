@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Doodle;
@@ -42,14 +44,18 @@ class DefaultController extends Controller
         // Handling form submission
         if ($form->isValid()) {
             $formData = $form->getData();
-
             $now = new DateTime();
 
-            // Setting Doodle object
+            // Setting Doodle values
             $doodle->setCreated($now);
-            $doodle->setAuthor($formData->author);
             $doodle->setTitle($formData->title);
             $doodle->setData($formData->data);
+            $doodle->setUser($user);
+            if ($user) {
+                $doodle->setAuthor($user->username);
+            } else {
+                $doodle->setAuthor('Anonymous');
+            }
 
             // Calling doctrine entity manager
             $em = $this->getDoctrine()->getManager();
@@ -59,7 +65,32 @@ class DefaultController extends Controller
             return $this->redirectToRoute('Home');
         }
 
-        return $this->render('default/doodle.html.twig', array('data' => $data, 'form' => $form->createView()));
+        return $this->render('default/doodle.html.twig', ['data' => $data, 'form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/u/{username}", name="view_profile")
+     */
+    public function viewProfileAction(Request $request, $username)
+    {
+        $user = $this->getUser();
+
+        $profile = $this->getDoctrine()
+            ->getRepository('AppBundle:User')
+            ->findOneBy(["username" => $username]);
+
+        if ($profile) {
+            $message = "PROFILE FOUND";
+        } else {
+            $message =  "NO PROFILE FOUND";
+        }
+
+        $data = array(
+            'title' => 'BaconDoodle! - View Profile',
+            'user' => $user,
+            'profile' => $profile,
+        );
+        return $this->render('default/view_profile.html.twig', ['data' => $data]);
     }
 
     /**

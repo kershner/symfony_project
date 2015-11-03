@@ -26,7 +26,7 @@ class Doodle
     /**
      * @ORM\Column(name="author", type="string", length=100)
      */
-    public $author = '';
+    public $author;
 
     /**
      * @ORM\Column(name="created", type="date")
@@ -34,9 +34,9 @@ class Doodle
     public $created;
 
     /**
-     * @ORM\Column(name="title", type="string", length=100)
+     * @ORM\Column(name="title", type="string", length=100, nullable=true)
      */
-    public $title = ' ';
+    public $title = "";
 
     /**
      * @ORM\Column(name="data", type="text")

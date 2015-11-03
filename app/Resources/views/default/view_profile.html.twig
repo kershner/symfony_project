@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+
+<div class="row row-centered">
+    {{ data.profile.username }} <br>
+    {{ data.profile.email }} <br>
+
+    {% for doodle in data.profile.doodles %}
+        <img src="{{ doodle.data }}"> <br>
+    {% endfor %}
+
+    {% for comment in data.profile.comments %}
+        {{ comment }} <br>
+    {% endfor %}
+</div>
+
+<br>
+<br>
+<br>
+<br>
+{% endblock %}
