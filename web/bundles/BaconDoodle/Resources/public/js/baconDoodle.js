@@ -14,6 +14,7 @@ function main(colors) {
 	}, 3000);
 	newDoodle();
 	closeControls();
+	newComment();
 	colorEntries();
 	chooseBackground();
 
@@ -37,6 +38,28 @@ function closeControls() {
 	$('.close-controls').on('click', function () {
 		$(this).toggleClass('hidden');
 		$(this).siblings('.controls, .doodle-form, .new-doodle').toggleClass('hidden');
+	});
+}
+
+function newComment() {
+	$('.doodle-comment-new').on('click', function() {
+		var html = 	'<form class="comment-entry">' +
+					'<input type="text" class="comment-text" name="comment" placeholder="Text" maxlength="140" required="true">' +
+					'<button class="comment-submit" type="submit">Submit</button></form>';
+		$(this).parents('.entry').append(html);
+		submitComment($(this).parents('.comment-entry'));
+	});
+}
+
+function submitComment(form) {
+	form.children('.comment-submit').on('click', function(e) {
+		e.preventDefault();
+        e.stopImmediatePropagation();
+        var comment = $(this).siblings('.comment-text').val();
+        var id = $(this).parents('.doodle-id').text();
+		console.log(comment);
+		console.log(id);
+		// AJAX to /comment route, close comment entry window, update comment counter when response returned successfully
 	});
 }
 

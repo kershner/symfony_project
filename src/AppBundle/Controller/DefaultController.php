@@ -8,8 +8,9 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Entity\Doodle;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Doodle;
+use AppBundle\Entity\Comment;
 use AppBundle\Form\Type\DoodleType;
 use AppBundle\Form\Type\UserType;
 use \DateTime;
@@ -21,21 +22,21 @@ class DefaultController extends Controller
      */
     public function doodleAction(Request $request)
     {
+        $user = $this->getUser();
+
         $entries = $this->getDoctrine()
             ->getRepository('AppBundle:Doodle')
             ->findAll();
-
-        $user = $this->getUser();
 
         // Instantiating Doodle object
         $doodle = new Doodle();
 
         // Variables for final response
-        $data = array(
+        $data = [
             'title' => 'BaconDoodle!',
             'user' => $user,
             'entries' => $entries,
-        );
+        ];
 
         // Initializing form
         $form = $this->createForm(new DoodleType(), $doodle);
@@ -65,7 +66,54 @@ class DefaultController extends Controller
             return $this->redirectToRoute('Home');
         }
 
-        return $this->render('default/doodle.html.twig', ['data' => $data, 'form' => $form->createView()]);
+        return $this->render('default/doodle.html.twig', [
+            'data' => $data,
+            'form' => $form->createView()
+            ]);
+    }
+
+    /**
+     * @Route("/comment", name="Comment")
+     */
+    public function commentAction(Request $request)
+    {
+        $user = $this->getUser();
+        $post_data = $request->get('data');
+        $comment = new Comment();
+        $now = new DateTime();
+
+        ///////////////////////////////////////////////////////////////
+        // $doodle_id and $text variables will come from AJAX post data
+        $doodle_id = '';
+        $text = '';
+
+        // $doodle = $this->getDoctrine()
+        //     ->getRepository('AppBundle:Doodle')
+        //     ->find($doodle_id);
+
+        // $comment->setUser($user);
+        // $comment->setDoodle($doodle);
+        // $comment->setCreated($now);
+        // $comment->setText($text);
+        // if ($user) {
+        //     $comment->setAuthor($user->username);
+        // } else {
+        //     $comment->setAuthor('Anonymous');
+        // }
+
+        // $em = $this->getDoctrine()->getManager();
+        // $em->persist($comment);
+        // $em->flush();
+
+        $data = [
+            'message' => 'Hello world!',
+            'payload' => $post_data,
+        ];
+
+        $response = new Response(json_encode(['response' => $data]));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
@@ -77,19 +125,13 @@ class DefaultController extends Controller
 
         $profile = $this->getDoctrine()
             ->getRepository('AppBundle:User')
-            ->findOneBy(["username" => $username]);
+            ->findOneBy(['username' => $username]);
 
-        if ($profile) {
-            $message = "PROFILE FOUND";
-        } else {
-            $message =  "NO PROFILE FOUND";
-        }
-
-        $data = array(
+        $data = [
             'title' => 'BaconDoodle! - View Profile',
             'user' => $user,
             'profile' => $profile,
-        );
+        ];
         return $this->render('default/view_profile.html.twig', ['data' => $data]);
     }
 
@@ -121,7 +163,10 @@ class DefaultController extends Controller
             return $this->redirectToRoute('Login');
         }
 
-        return $this->render('security/register.html.twig', array('form' => $form->createView(), 'data' => ['user' => $user]));
+        return $this->render('security/register.html.twig', [
+            'form' => $form->createView(),
+            'data' => ['user' => $user]
+            ]);
     }
 
     /**
@@ -135,13 +180,11 @@ class DefaultController extends Controller
         $user = $this->getUser();
 
         return $this->render(
-            'security/login.html.twig',
-            array(
+            'security/login.html.twig', [
                 'last_username' => $lastUsername,
                 'error' => $error,
                 'data' => ['user' => $user],
-            )
-        );
+            ]);
     }
 
     /**
@@ -149,7 +192,6 @@ class DefaultController extends Controller
      */
     public function loginCheckAction(Request $request)
     {
-
     }
 
     /**
@@ -161,10 +203,8 @@ class DefaultController extends Controller
             ->getRepository('AppBundle:User')
             ->findAll();
 
-        $data = array(
-            'users' => $users
-        );
-        return $this->render('default/view_users.html.twig', array('data' => $data));
+        $data = ['users' => $users];
+        return $this->render('default/view_users.html.twig', ['data' => $data]);
     }
 
     /**
@@ -190,15 +230,15 @@ class DefaultController extends Controller
         $author = $doodle->author;
         $dataUrl = $doodle->data;
 
-        $data = array(
+        $data = [
             'id' => $id,
             'created' => $created,
             'title' => $title,
             'author' => $author,
             'dataUrl' => $dataUrl
-            );
+        ];
 
-        $response = new Response(json_encode(array('doodle' => $data)));
+        $response = new Response(json_encode(['doodle' => $data]));
         $response->headers->set('Content-Type', 'application/json');
 
         return $response;

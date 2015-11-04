@@ -116,7 +116,7 @@ class User implements UserInterface, \Serializable
     public function setUsername($username)
     {
         $this->username = $username;
-    
+
         return $this;
     }
 
@@ -140,7 +140,7 @@ class User implements UserInterface, \Serializable
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
@@ -164,7 +164,7 @@ class User implements UserInterface, \Serializable
     public function setPassword($password)
     {
         $this->password = $password;
-    
+
         return $this;
     }
     public function getPassword()
@@ -197,7 +197,7 @@ class User implements UserInterface, \Serializable
     public function setIsActive($isActive)
     {
         $this->isActive = $isActive;
-    
+
         return $this;
     }
 
@@ -221,7 +221,7 @@ class User implements UserInterface, \Serializable
     public function addDoodle(\AppBundle\Entity\Doodle $doodle)
     {
         $this->doodles[] = $doodle;
-    
+
         return $this;
     }
 
@@ -255,7 +255,7 @@ class User implements UserInterface, \Serializable
     public function addComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments[] = $comment;
-    
+
         return $this;
     }
 

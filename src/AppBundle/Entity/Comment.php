@@ -63,7 +63,7 @@ class Comment
     public function setAuthor($author)
     {
         $this->author = $author;
-    
+
         return $this;
     }
 
@@ -87,7 +87,7 @@ class Comment
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
@@ -111,7 +111,7 @@ class Comment
     public function setText($text)
     {
         $this->text = $text;
-    
+
         return $this;
     }
 
@@ -135,7 +135,7 @@ class Comment
     public function setUser(\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
@@ -159,7 +159,7 @@ class Comment
     public function setDoodle(\AppBundle\Entity\Doodle $doodle = null)
     {
         $this->doodle = $doodle;
-    
+
         return $this;
     }
 

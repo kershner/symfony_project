@@ -169,7 +169,7 @@ class Doodle
     public function setUser(\AppBundle\Entity\User $user = null)
     {
         $this->user = $user;
-    
+
         return $this;
     }
 
@@ -193,7 +193,7 @@ class Doodle
     public function addComment(\AppBundle\Entity\Comment $comment)
     {
         $this->comments[] = $comment;
-    
+
         return $this;
     }
 
