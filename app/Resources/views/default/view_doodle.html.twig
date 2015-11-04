@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <img src="{{ data.doodle.data }}">
+
+    {% for comment in data.doodle.comments %}
+        {{ comment.author }} - {{ comment.text }}<br>
+    {% endfor %}
+
+{% endblock %}

@@ -42,12 +42,13 @@ function closeControls() {
 }
 
 function newComment() {
-	$('.doodle-comment-new').on('click', function() {
+	$('.doodle-comments-new').on('click', function() {
 		var html = 	'<form class="comment-entry">' +
 					'<input type="text" class="comment-text" name="comment" placeholder="Text" maxlength="140" required="true">' +
 					'<button class="comment-submit" type="submit">Submit</button></form>';
 		$(this).parents('.entry').append(html);
-		submitComment($(this).parents('.comment-entry'));
+		var form = $(this).parents('.entry').find('.comment-entry');
+		submitComment(form);
 	});
 }
 
@@ -56,10 +57,24 @@ function submitComment(form) {
 		e.preventDefault();
         e.stopImmediatePropagation();
         var comment = $(this).siblings('.comment-text').val();
-        var id = $(this).parents('.doodle-id').text();
-		console.log(comment);
-		console.log(id);
-		// AJAX to /comment route, close comment entry window, update comment counter when response returned successfully
+        var id = $(this).parents('.entry').find('.doodle-id').text();
+		$.ajax({
+                url: '/comment',
+                type: 'POST',
+                data: {
+                    'comment': comment,
+                    'id': id
+                },
+                success: function(json) {
+                    console.log('SUCCESS!');
+                    console.log(json);
+                },
+                error: function(xhr, errmsg, err) {
+                    console.log('Error!');
+                    console.log(errmsg);
+                    console.log(xhr.status + ': ' + xhr.responseText);
+                }
+            });
 	});
 }
 

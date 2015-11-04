@@ -377,6 +377,12 @@ select {
 .doodle-icons div:active {
 	top: .45em;
 }
+.comment-entry {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: white;
+}
 .doodle-pic img {
 	width: 225px;
 	height: 225px;

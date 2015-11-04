@@ -14,7 +14,7 @@
     {% endfor %}
 
     {% for comment in data.profile.comments %}
-        {{ comment }} <br>
+        {{ comment.text }} || {{  comment.doodle.id }}<br>
     {% endfor %}
 </div>
 

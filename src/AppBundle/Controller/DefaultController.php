@@ -78,36 +78,34 @@ class DefaultController extends Controller
     public function commentAction(Request $request)
     {
         $user = $this->getUser();
-        $post_data = $request->get('data');
         $comment = new Comment();
         $now = new DateTime();
 
-        ///////////////////////////////////////////////////////////////
-        // $doodle_id and $text variables will come from AJAX post data
-        $doodle_id = '';
-        $text = '';
+        $doodle_id = $request->get('id');
+        $text = $request->get('comment');
 
-        // $doodle = $this->getDoctrine()
-        //     ->getRepository('AppBundle:Doodle')
-        //     ->find($doodle_id);
+         $doodle = $this->getDoctrine()
+             ->getRepository('AppBundle:Doodle')
+             ->find($doodle_id);
 
-        // $comment->setUser($user);
-        // $comment->setDoodle($doodle);
-        // $comment->setCreated($now);
-        // $comment->setText($text);
-        // if ($user) {
-        //     $comment->setAuthor($user->username);
-        // } else {
-        //     $comment->setAuthor('Anonymous');
-        // }
+         $comment->setUser($user);
+         $comment->setDoodle($doodle);
+         $comment->setCreated($now);
+         $comment->setText($text);
+         if ($user) {
+             $comment->setAuthor($user->username);
+         } else {
+             $comment->setAuthor('Anonymous');
+         }
 
-        // $em = $this->getDoctrine()->getManager();
-        // $em->persist($comment);
-        // $em->flush();
+         $em = $this->getDoctrine()->getManager();
+         $em->persist($comment);
+         $em->flush();
 
         $data = [
-            'message' => 'Hello world!',
-            'payload' => $post_data,
+            'message' => 'Success!',
+            'id' => $doodle_id,
+            'text' => $text
         ];
 
         $response = new Response(json_encode(['response' => $data]));
@@ -133,6 +131,25 @@ class DefaultController extends Controller
             'profile' => $profile,
         ];
         return $this->render('default/view_profile.html.twig', ['data' => $data]);
+    }
+
+    /**
+     * @Route("/doodle/{id}", name="view_doodle")
+     */
+    public function viewDoodleAction(Request $request, $id)
+    {
+        $user = $this->getUser();
+
+        $doodle = $this->getDoctrine()
+            ->getRepository('AppBundle:Doodle')
+            ->find($id);
+
+        $data = [
+            'title' => 'BaconDoodle! - View Profile',
+            'user' => $user,
+            'doodle' => $doodle,
+        ];
+        return $this->render('default/view_doodle.html.twig', ['data' => $data]);
     }
 
     /**
