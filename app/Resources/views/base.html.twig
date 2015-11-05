@@ -33,8 +33,9 @@
 
                         <div class="nav-menu col-md-4">
                             <div class="animate-fast"><a href="/">Home</a></div>
-                            {%  if data.user  %}
-                            <div class="animate-fast"><a href="/logout">Logout</a></div>
+                            {%  if app.user  %}
+                                <div class="animate-fast"><a href="/u/{{ app.user.username }}">Profile</a></div>
+                                <div class="animate-fast"><a href="/logout">Logout</a></div>
                             {% else %}
                             <div class="animate-fast"><a href="/register">Signup</a></div>
                             <div class="animate-fast"><a href="/login">Login</a></div>

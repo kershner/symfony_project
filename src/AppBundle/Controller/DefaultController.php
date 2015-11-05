@@ -22,7 +22,6 @@ class DefaultController extends Controller
      */
     public function doodleAction(Request $request)
     {
-        $user = $this->getUser();
 
         $entries = $this->getDoctrine()
             ->getRepository('AppBundle:Doodle')
@@ -34,7 +33,6 @@ class DefaultController extends Controller
         // Variables for final response
         $data = [
             'title' => 'BaconDoodle!',
-            'user' => $user,
             'entries' => $entries,
         ];
 
@@ -45,6 +43,7 @@ class DefaultController extends Controller
         // Handling form submission
         if ($form->isValid()) {
             $formData = $form->getData();
+            $user = $this->getUser();
             $now = new DateTime();
 
             // Setting Doodle values
@@ -119,15 +118,12 @@ class DefaultController extends Controller
      */
     public function viewProfileAction(Request $request, $username)
     {
-        $user = $this->getUser();
-
         $profile = $this->getDoctrine()
             ->getRepository('AppBundle:User')
             ->findOneBy(['username' => $username]);
 
         $data = [
             'title' => 'BaconDoodle! - View Profile',
-            'user' => $user,
             'profile' => $profile,
         ];
         return $this->render('default/view_profile.html.twig', ['data' => $data]);
@@ -138,15 +134,12 @@ class DefaultController extends Controller
      */
     public function viewDoodleAction(Request $request, $id)
     {
-        $user = $this->getUser();
-
         $doodle = $this->getDoctrine()
             ->getRepository('AppBundle:Doodle')
             ->find($id);
 
         $data = [
             'title' => 'BaconDoodle! - View Profile',
-            'user' => $user,
             'doodle' => $doodle,
         ];
         return $this->render('default/view_doodle.html.twig', ['data' => $data]);
@@ -157,8 +150,6 @@ class DefaultController extends Controller
      */
     public function registerAction(Request $request)
     {
-        $user = $this->getUser();
-
         $new_user = new User();
         $form = $this->createForm(new UserType(), $new_user);
 
@@ -181,9 +172,8 @@ class DefaultController extends Controller
         }
 
         return $this->render('security/register.html.twig', [
-            'form' => $form->createView(),
-            'data' => ['user' => $user]
-            ]);
+            'form' => $form->createView()
+        ]);
     }
 
     /**
@@ -194,13 +184,11 @@ class DefaultController extends Controller
         $authenticationUtils = $this->get('security.authentication_utils');
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
-        $user = $this->getUser();
 
         return $this->render(
             'security/login.html.twig', [
                 'last_username' => $lastUsername,
-                'error' => $error,
-                'data' => ['user' => $user],
+                'error' => $error
             ]);
     }
 

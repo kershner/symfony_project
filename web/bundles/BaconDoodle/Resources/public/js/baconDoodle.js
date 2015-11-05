@@ -9,7 +9,6 @@ function main(colors) {
 	$('.doodle').colorWave(colors);
 	setInterval(function() {
 		$('.doodle').colorWave(colors);
-		$('.new-doodle').colorWave(colors);
 		$('.inner-title').colorWave(colors);
 	}, 3000);
 	newDoodle();
@@ -36,6 +35,10 @@ function newDoodle() {
 
 function closeControls() {
 	$('.close-controls').on('click', function () {
+		$(this).parents('.controls-row').css({
+			'background-color': '#FFFFFF',
+			'padding': '0'
+		});
 		$(this).toggleClass('hidden');
 		$(this).siblings('.controls, .doodle-form, .new-doodle').toggleClass('hidden');
 	});
@@ -87,7 +90,6 @@ function colorEntries() {
 		}
 		var colorChoice = colors[counter];
 		$(this).css('background-color', colorChoice);
-		$(this).children('.author-date').css('background-color', colorChoice);
 		$(this).children('.doodle-id').css('background-color', colorChoice);
 		counter += 1;
 	});

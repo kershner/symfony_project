@@ -50,17 +50,23 @@
             <div id="prev-doodles"><span class="lobster">P</span>revious <span class="lobster">D</span>oodles</div>
 
             {% for entry in data.entries %}
-                <div class="entry col-md-4 col-centered animate-fast">
-                    <div class="doodle-icons">
-                        <div class="doodle-comments-new animate-fast"><i class="fa fa-pencil-square-o"></i></div>
-                        <div class="doodle-comments animate-fast"><i class="fa fa-comment-o"></i><span>4</span></div>
+                <div class="entry-wrapper">
+                    <div class="entry col-md-4 col-centered animate-fast">
+                        <div class="doodle-icons">
+                            <div class="doodle-comments-new animate-fast"><i class="fa fa-pencil-square-o"></i><div class="tip animate">New Comment</div></div>
+                            {% if entry.comments|length > 0 %}
+                            <div class="doodle-comments animate-fast"><i class="fa fa-comment-o"></i><span>{{ entry.comments|length }}</span></div>
+                            {% endif %}
+                        </div>
+                        <div class="doodle-id animate-fast">{{ entry.id }}</div>
+                        <div class="doodle-pic"><img src="{{ entry.data }}"></div>
+                        <div class="entry-title">{{ entry.title }}</div>
                     </div>
-                    <div class="doodle-id animate-fast">{{ entry.id }}</div>
-                    <div class="doodle-pic"><img src="{{ entry.data }}"></div>
-                    <div class="entry-title">{{ entry.title }}</div>
                     <div class="author-date animate-fast">
-                        {% if entry.author %}
-                            <div class="author">{{ entry.author }}</div>
+                        {% if entry.author == "Anonymous" or entry.author|length == 0 %}
+                        <div class="entry-spacer"></div>
+                        {% else %}
+                        <div class="author">{{ entry.author }}</div>
                         {% endif %}
                         <div class="created">{{ entry.created|date("m/d/Y") }}</div>
                     </div>

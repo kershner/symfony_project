@@ -15,65 +15,65 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 */
 class User implements UserInterface, \Serializable
 {
-	/**
-	* @ORM\Column(type="integer")
-	* @ORM\Id
-	* @ORM\GeneratedValue(strategy="AUTO")
-	*/
-	public $id;
+    /**
+    * @ORM\Column(type="integer")
+    * @ORM\Id
+    * @ORM\GeneratedValue(strategy="AUTO")
+    */
+    public $id;
 
-	/**
-	* @ORM\Column(name="username", type="string", length=20, unique=true)
-	* @Assert\NotBlank()
-	*/
-	public $username;
+    /**
+    * @ORM\Column(name="username", type="string", length=20, unique=true)
+    * @Assert\NotBlank()
+    */
+    public $username;
 
-	/**
-	* @ORM\Column(name="email", type="string", length=60, unique=true)
-	* @Assert\NotBlank()
-	* @Assert\Email()
-	*/
-	public $email;
+    /**
+    * @ORM\Column(name="email", type="string", length=60, unique=true)
+    * @Assert\NotBlank()
+    * @Assert\Email()
+    */
+    public $email;
 
-	/**
+    /**
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	public $plainPassword;
+    public $plainPassword;
 
-	/**
-	* @ORM\Column(name="password", type="string", length=64)
-	*/
-	public $password;
+    /**
+    * @ORM\Column(name="password", type="string", length=64)
+    */
+    public $password;
 
-	/**
+    /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     public $isActive;
 
-	/**
-	* @ORM\OneToMany(targetEntity="AppBundle\Entity\Doodle", mappedBy="user")
-	*/
-	public $doodles;
+    /**
+    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Doodle", mappedBy="user")
+    */
+    public $doodles;
 
-	/**
-	* @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="user")
-	*/
-	public $comments;
+    /**
+    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="user")
+    */
+    public $comments;
 
-	public function __construct()
-	{
-		$this->isActive = true;
-		$this->doodles = new ArrayCollection();
-		$this->comments = new ArrayCollection();
-	}
+    public function __construct()
+    {
+        $this->isActive = true;
+        $this->doodles = new ArrayCollection();
+        $this->comments = new ArrayCollection();
+    }
 
     public function getRoles()
     {
         return array('ROLE_USER');
     }
 
-	public function eraseCredentials()
+    public function eraseCredentials()
     {
     }
 

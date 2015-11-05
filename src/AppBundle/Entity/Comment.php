@@ -16,32 +16,32 @@ class Comment
 	*/
 	public $id;
 
-	/**
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comments")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-	public $user;
+    public $user;
 
-	/**
+    /**
      * @ORM\Column(name="author", type="string", length=100)
      */
     public $author;
 
-	/**
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Doodle", inversedBy="comments")
      * @ORM\JoinColumn(name="doodle_id", referencedColumnName="id")
      */
-	public $doodle;
+    public $doodle;
 
-	/**
+    /**
      * @ORM\Column(name="created", type="date")
      */
-	public $created;
+    public $created;
 
-	/**
-	* @ORM\Column(name="text", type="string", length=140)
-	*/
-	public $text;
+    /**
+    * @ORM\Column(name="text", type="string", length=140)
+    */
+    public $text;
 
     /**
      * Get id
