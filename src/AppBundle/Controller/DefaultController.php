@@ -83,28 +83,61 @@ class DefaultController extends Controller
         $doodle_id = $request->get('id');
         $text = $request->get('comment');
 
-         $doodle = $this->getDoctrine()
-             ->getRepository('AppBundle:Doodle')
-             ->find($doodle_id);
+        $doodle = $this->getDoctrine()
+            ->getRepository('AppBundle:Doodle')
+            ->find($doodle_id);
 
-         $comment->setUser($user);
-         $comment->setDoodle($doodle);
-         $comment->setCreated($now);
-         $comment->setText($text);
-         if ($user) {
-             $comment->setAuthor($user->username);
-         } else {
-             $comment->setAuthor('Anonymous');
-         }
+        $comment->setUser($user);
+        $comment->setDoodle($doodle);
+        $comment->setCreated($now);
+        $comment->setText($text);
+        if ($user) {
+            $comment->setAuthor($user->username);
+        } else {
+            $comment->setAuthor('Anonymous');
+        }
 
-         $em = $this->getDoctrine()->getManager();
-         $em->persist($comment);
-         $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($comment);
+        $em->flush();
 
         $data = [
             'message' => 'Success!',
             'id' => $doodle_id,
             'text' => $text
+        ];
+
+        $response = new Response(json_encode(['response' => $data]));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/get-comments", name="get_comments")
+     */
+    public function getCommentsAction(Request $request)
+    {
+        $doodle_id = $request->get('id');
+
+        $doodle = $this->getDoctrine()
+            ->getRepository('AppBundle:Doodle')
+            ->find($doodle_id);
+
+        $comments = $doodle->comments;
+        $new_comments = [];
+        foreach ($comments as $comment) {
+            $attr = [
+                'created' => $comment->created,
+                'author' => $comment->author,
+                'text' => $comment->text
+            ];
+            array_push($new_comments, $attr);
+        }
+
+        $data = [
+            'message' => 'Success!',
+            'comments' => $new_comments
         ];
 
         $response = new Response(json_encode(['response' => $data]));

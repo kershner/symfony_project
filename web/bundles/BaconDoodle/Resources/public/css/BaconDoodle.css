@@ -179,15 +179,15 @@ select {
 	top: -.75em;
 	right: .25em;
 	opacity: .6em;
-	color: #a0a0a0;
+	color: #d9534f;
 	font-size: 2.25em;
 	text-shadow: none;
 }
 .close-controls:hover {
 	cursor: pointer;
 	opacity: 1;
-	transform: scale(1.5);
-	color: #d9534f;
+	transform: scale(1.2);
+	color: #a0a0a0;
 }
 .new-doodle {
 	position: relative;
@@ -399,11 +399,65 @@ select {
 	border-radius: .25em;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
 }
+.comments {
+	position: absolute;
+	overflow: auto;
+	z-index: 3;
+	top: .5em;
+	right: .5em;
+	max-height: 20em;
+	min-width: 12em;
+	border-radius: .25em;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+}
+.comments::-webkit-scrollbar {
+	width: .25em;
+	background-color: rgba(0, 0, 0, .4);
+	border-radius: .25em;
+}
+.close-comments {
+	position: absolute;
+	z-index: 3;
+	top: .0;
+	right: .25em;
+	font-size: 1.5em;
+}
 .comment-entry {
 	position: absolute;
-	top: 0;
+	bottom: 0;
 	left: 0;
-	background-color: white;
+	right: 0;
+	margin: 0 auto;
+	padding: .75em;
+	background-color: #F2F2F2;
+	text-align: center;
+	color: black;
+	border-radius: .25em;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+}
+.comment-submit {
+	background-color: #A6C159;
+	color: white;
+	text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+	border: none;
+	border-radius: .25em;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+}
+.comment-submit:hover {
+
+}
+.comment-submit:active {
+	top: 4px;
+}
+.comment {
+	margin: .25em;
+	padding: .5em;
+	background-color: #F2F2F2;
+	color: black;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.46);
+	border-radius: .25em;
+	text-shadow: none;
+	font-size: .9em;
 }
 .doodle-pic img {
 	width: 225px;

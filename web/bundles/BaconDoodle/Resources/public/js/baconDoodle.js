@@ -14,6 +14,7 @@ function main(colors) {
 	newDoodle();
 	closeControls();
 	newComment();
+	openComments();
 	colorEntries();
 	chooseBackground();
 
@@ -46,12 +47,17 @@ function closeControls() {
 
 function newComment() {
 	$('.doodle-comments-new').on('click', function() {
-		var html = 	'<form class="comment-entry">' +
-					'<input type="text" class="comment-text" name="comment" placeholder="Text" maxlength="140" required="true">' +
+		var commentForm = $(this).closest('.entry').find('.comment-entry');
+		if (commentForm.length) {
+			$(commentForm).toggleClass('hidden');
+		} else {
+			var html = 	'<form class="comment-entry">' +
+					'<input type="text" class="comment-text" name="comment" placeholder="Comment" maxlength="140">' +
 					'<button class="comment-submit" type="submit">Submit</button></form>';
-		$(this).parents('.entry').append(html);
-		var form = $(this).parents('.entry').find('.comment-entry');
-		submitComment(form);
+			$(this).parents('.entry').append(html);
+			var form = $(this).parents('.entry').find('.comment-entry');
+			submitComment(form);
+		}
 	});
 }
 
@@ -60,25 +66,97 @@ function submitComment(form) {
 		e.preventDefault();
         e.stopImmediatePropagation();
         var comment = $(this).siblings('.comment-text').val();
-        var id = $(this).parents('.entry').find('.doodle-id').text();
-		$.ajax({
-                url: '/comment',
-                type: 'POST',
-                data: {
-                    'comment': comment,
-                    'id': id
-                },
-                success: function(json) {
-                    console.log('SUCCESS!');
-                    console.log(json);
-                },
-                error: function(xhr, errmsg, err) {
-                    console.log('Error!');
-                    console.log(errmsg);
-                    console.log(xhr.status + ': ' + xhr.responseText);
-                }
-            });
+        if (comment.length < 1) {
+        	// Pop up a notification to enter a comment
+        } else {
+        	var id = $(this).parents('.entry').find('.doodle-id').text();
+			$.ajax({
+	            url: '/comment',
+	            type: 'POST',
+	            data: {
+	                'comment': comment,
+	                'id': id
+	            },
+	            success: function(json) {
+	                console.log('SUCCESS!');
+	                console.log(json);
+	            },
+	            error: function(xhr, errmsg, err) {
+	                console.log('Error!');
+	                console.log(errmsg);
+	                console.log(xhr.status + ': ' + xhr.responseText);
+	            }
+	        });
+        }
 	});
+}
+
+function openComments() {
+	$('.doodle-comments').each(function() {
+		$(this).on('click', function() {
+			var commentsDiv = $(this).closest('.entry').find('.comments');
+			if (commentsDiv.length) {
+				commentsDiv.toggleClass('hidden');
+			} else {
+				var parentColor = $(this).closest('.entry').css('background-color');
+				var html = '<div class="comments animate"><div class="close-comments close-controls animate"><i class="fa fa-times"></i></div></div>';
+				$(this).closest('.entry').append(html);
+				var commentsDiv = $(this).closest('.entry').find('.comments');
+				getComments(commentsDiv);
+				commentsDiv.css({
+					'opacity': '1.0',
+					'background-color': parentColor
+				});
+				closeComments(commentsDiv);
+			}
+		});
+	});
+}
+
+function closeComments(div) {
+	var closeBtn = $(div).find('.close-comments');
+	$(closeBtn).on('click', function() {
+		$(this).parent().toggleClass('hidden');
+	});
+}
+
+function getComments(div) {
+	console.log('Firing getComments() AJAX...');
+	var id = $(div).parent().find('.doodle-id').text();
+	$.ajax({
+        url: '/get-comments',
+        type: 'POST',
+        data: {
+            'id': id
+        },
+        success: function(json) {
+            console.log('Received JSON response!');
+            var comments = json['response']['comments'];
+            displayComments(div, comments);
+        },
+        error: function(xhr, errmsg, err) {
+            console.log('Error!');
+            console.log(errmsg);
+            console.log(xhr.status + ': ' + xhr.responseText);
+        }
+    });
+}
+
+function displayComments(div, comments) {
+	var finalComments = [];
+	for (var i=0; i<comments.length; i++) {
+		var created = comments[i]['created'];
+		var author = comments[i]['author'];
+		var text = comments[i]['text'];
+		var createdDiv = '<div class="created">' + 'DATE' + '</div>';
+		var authorDiv = '<div class="author">' + author + '</div>';
+		var textDiv = '<div class="text">' + text + '</div>';
+		var html= '<div class="comment">' + createdDiv + authorDiv + textDiv + '</div>';
+		finalComments.push(html);
+	}
+	for (var i=0; i<finalComments.length; i++) {
+		$(div).append(finalComments[i]);
+	}
 }
 
 function colorEntries() {
