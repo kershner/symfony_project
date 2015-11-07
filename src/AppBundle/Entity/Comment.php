@@ -23,7 +23,7 @@ class Comment
     public $user;
 
     /**
-     * @ORM\Column(name="author", type="string", length=100)
+     * @ORM\Column(name="author", type="string", length=100, nullable=true)
      */
     public $author;
 
