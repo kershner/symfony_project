@@ -36,6 +36,15 @@ class User implements UserInterface, \Serializable
     public $email;
 
     /**
+     * @ORM\Column(name="avatar", type="string", length=180)
+     * @Assert\NotBlank()
+     * @Assert\Url(
+     *    message = "'{{ value }}' is not a valid url!",
+     * )
+     */
+    public $avatar;
+
+    /**
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
@@ -277,5 +286,29 @@ class User implements UserInterface, \Serializable
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     *
+     * @return User
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
     }
 }
