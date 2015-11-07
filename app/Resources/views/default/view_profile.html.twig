@@ -1,25 +1,47 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<br>
-<br>
-<br>
-<br>
+<div class="profile-wrapper">
+    <div class="row row-centered profile-info">
+        {{ data.profile.username }} <br>
+        {{ data.profile.email }} <br>
+    </div>
 
-<div class="row row-centered">
-    {{ data.profile.username }} <br>
-    {{ data.profile.email }} <br>
+    <div class="row row-centered">
+        <div class="col-md-6 col-centered profile-doodles">
+            <div class="form-title">Doodles</div>
+            {% for doodle in data.profile.doodles %}
+            <div class="entry-wrapper">
+                <div class="entry col-md-4 col-centered animate-fast">
+                    <div class="doodle-icons">
+                        <div class="doodle-comments-new animate-fast"><i class="fa fa-pencil-square-o"></i><div class="tip animate">New Comment</div></div>
+                        {% if doodle.comments|length > 0 %}
+                            <div class="doodle-comments animate-fast"><i class="fa fa-comment-o"></i><span>{{ doodle.comments|length }}</span></div>
+                        {% endif %}
+                    </div>
+                    <a class="doodle-pic" href="/doodle/{{ doodle.id }}"><img src="{{ doodle.data }}"></a>
+                    <div class="entry-title">{{ doodle.title }}</div>
+                </div>
+                <div class="author-date animate-fast">
+                    <div class="entry-spacer"></div>
+                    <div class="created">{{ doodle.created|date("m/d/Y") }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
-    {% for doodle in data.profile.doodles %}
-        <img src="{{ doodle.data }}"> <br>
-    {% endfor %}
-
-    {% for comment in data.profile.comments %}
-        {{ comment.text }} || {{  comment.doodle.id }}<br>
-    {% endfor %}
+    <div class="row row-centered">
+        <div class="col-md-6 col-centered profile-comments">
+            <div class="form-title">Comments</div>
+            {% for comment in data.profile.comments %}
+            <div class="profile-comment">
+                <span class="comment-text">{{ comment.text }}</span>
+                <a href="/doodle/{{ comment.doodle.id }}">
+                    <img class="comment-doodle-img" src="{{  comment.doodle.data }}">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
-
-<br>
-<br>
-<br>
-<br>
 {% endblock %}

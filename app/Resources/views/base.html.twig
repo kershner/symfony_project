@@ -44,7 +44,9 @@
                     </div>
                 </div>
             </div>
+
         {% block body %}{% endblock %}
+
             <div class="row row-centered footer">
                 <a href="https://github.com/kershner/symfony_project/">
                     <div class="github col-md-1 col-centered animate-fast">
@@ -63,6 +65,12 @@
             <script src="{{ asset('bundles/BaconDoodle/Resources/public/js/colorWave.js') }}" type="text/javascript"></script>
             <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
             <script src="{{ asset('bundles/BaconDoodle/Resources/public/js/baconDoodle.js') }}" type="text/javascript"></script>
+            {% if data.title == 'BaconDoodle!' %}
+                <script type="text/javascript">
+                    // Canvas init
+                    init();
+                </script>
+            {% endif %}
         {% endblock %}
     </body>
 </html>

@@ -186,6 +186,10 @@ class DefaultController extends Controller
         $new_user = new User();
         $form = $this->createForm(new UserType(), $new_user);
 
+        $data = [
+            'title' => 'Register - BaconDoodle!'
+        ];
+
         // Handle form POST request
         $form->handleRequest($request);
         if ($form->isValid() && $form->isSubmitted()) {
@@ -205,7 +209,8 @@ class DefaultController extends Controller
         }
 
         return $this->render('security/register.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'data' => $data
         ]);
     }
 
@@ -218,10 +223,15 @@ class DefaultController extends Controller
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        $data = [
+            'title' => 'Login - BaconDoodle!'
+        ];
+
         return $this->render(
             'security/login.html.twig', [
                 'last_username' => $lastUsername,
-                'error' => $error
+                'error' => $error,
+                'data' => $data
             ]);
     }
 

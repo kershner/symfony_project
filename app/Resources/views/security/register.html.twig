@@ -1,18 +1,28 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<br>
-<br>
-<br>
-<br>
-<h1>REGISTER NOW!</h1>
+<div class="form-wrapper row row-centered">
+    <form class="col-md-12 col-centered login-form">
+        <div class="form-title">Sign up!</div>
+    {{ form_start(form) }}
+        <div class="form-group">
+        {{ form_row(form.username) }}
+        </div>
 
-{{ form_start(form) }}
-    {{ form_row(form.username) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.plainPassword.first) }}
-    {{ form_row(form.plainPassword.second) }}
+        <div class="form-group">
+        {{ form_row(form.email) }}
+        </div>
 
-    <button type="submit">Register!</button>
-{{ form_end(form) }}
+        <div class="form-group">
+        {{ form_row(form.plainPassword.first) }}
+        </div>
+
+        <div class="form-group">
+        {{ form_row(form.plainPassword.second) }}
+        </div>
+
+        <button type="submit" class="animate-fast">Register!</button>
+    {{ form_end(form) }}
+    </form>
+</div>
 
 {% endblock %}

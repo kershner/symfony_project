@@ -10,6 +10,9 @@ function main(colors) {
 	setInterval(function() {
 		$('.doodle').colorWave(colors);
 		$('.inner-title').colorWave(colors);
+		$('.form-title').each(function() {
+			$(this).colorWave(colors);
+		});
 	}, 3000);
 	newDoodle();
 	closeControls();
@@ -17,9 +20,6 @@ function main(colors) {
 	openComments();
 	colorEntries();
 	chooseBackground();
-
-	// Canvas init
-	init();
 }
 
 function newDoodle() {

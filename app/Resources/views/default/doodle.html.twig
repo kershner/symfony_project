@@ -58,8 +58,7 @@
                             <div class="doodle-comments animate-fast"><i class="fa fa-comment-o"></i><span>{{ entry.comments|length }}</span></div>
                             {% endif %}
                         </div>
-                        <div class="doodle-id animate-fast">{{ entry.id }}</div>
-                        <div class="doodle-pic"><img src="{{ entry.data }}"></div>
+                        <a class="doodle-pic" href="/doodle/{{ entry.id }}"><img src="{{ entry.data }}"></a>
                         <div class="entry-title">{{ entry.title }}</div>
                     </div>
                     <div class="author-date animate-fast">

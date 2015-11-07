@@ -1,29 +1,26 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+	<div class="form-wrapper row row-centered">
+		<form class="col-md-12 col-centered login-form" action="{{ path('login_check') }}" method="post">
+			<div class="form-title">Login</div>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+			{% if error %}
+			<div class="form-error">
+				{{ error.messageKey|trans(error.messageData, 'security') }}
+			</div>
+			{% endif %}
 
-	{% for flashMessage in app.session.flashbag.get('message') %}
-		{{ flashMessage }}
-	{% endfor %}
+			<div class="form-group">
+				<label for="username">Username</label>
+				<input type="text" id="username" name="_username" value="{{ last_username }}" />
+			</div>
 
-	{% if error %}
-		{{ error.messageKey|trans(error.messageData, 'security') }}
-	{% endif %}
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="_password" />
+			</div>
 
-	<form action="{{ path('login_check') }}" method="post">
-		<label for="username">Username:</label>
-		<input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="_password" />
-
-		<button type="submit">login</button>
-	</form>
-
+			<button type="submit" class="animate-fast">Login</button>
+		</form>
+	</div>
 {% endblock %}
