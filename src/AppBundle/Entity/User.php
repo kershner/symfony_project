@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 * @UniqueEntity(fields="email", message="Email already registered!")
 * @UniqueEntity(fields="username", message="Username already registered!")
 */
-class User implements UserInterface, \Serializable
+class User implements UserInterface
 {
     /**
     * @ORM\Column(type="integer")
