@@ -78,8 +78,7 @@ function submitComment(form) {
 	                'id': id
 	            },
 	            success: function(json) {
-	                console.log('SUCCESS!');
-	                console.log(json);
+	                updateEntryComments(form);
 	            },
 	            error: function(xhr, errmsg, err) {
 	                console.log('Error!');
@@ -89,6 +88,31 @@ function submitComment(form) {
 	        });
         }
 	});
+}
+
+function updateEntryComments(form) {
+	form.toggleClass('hidden');
+	var entry = form.parent();
+	var html = '<div class="notification">Comment Added!</div>';
+	entry.append(html);
+	var commentNumber = entry.find('.doodle-comments').text();
+	if (!commentNumber) {
+		var commentHtml = '<div class="doodle-comments animate-fast"><i class="fa fa-comment-o"></i><span>1</span></div>';
+		entry.find('.doodle-icons').append(commentHtml);
+		openComments();
+	} else {
+		var commentHtml = '<div class="doodle-comments animate-fast"><i class="fa fa-comment-o"></i><span>' + (parseInt(commentNumber) + 1) + '</span></div>';
+		entry.find('.doodle-comments').remove();
+		entry.find('.doodle-icons').append(commentHtml);
+		openComments();
+	}
+	setTimeout(function() {
+		$(entry).find('.notification').animate({
+			'opacity': '0.0'
+		}, 2000, function() {
+			$(this).remove();
+		});
+	}, 3000);
 }
 
 function openComments() {

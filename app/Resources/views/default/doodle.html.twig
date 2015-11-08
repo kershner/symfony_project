@@ -52,6 +52,7 @@
             {% for entry in data.entries %}
                 <div class="entry-wrapper">
                     <div class="entry col-md-4 col-centered animate-fast">
+                        <div class="doodle-id hidden">{{ entry.id }}</div>
                         <div class="doodle-icons">
                             <div class="doodle-comments-new animate-fast"><i class="fa fa-pencil-square-o"></i><div class="tip animate">New Comment</div></div>
                             {% if entry.comments|length > 0 %}
